@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Type pairing: Fraunces (display, editorial serif) for headings,
+     IBM Plex Sans for body/UI copy, IBM Plex Mono for data-dense figures
+     (percentages, dates, counters) — a lab-notebook, not a SaaS, register. */
+  --font-display: 'Fraunces', 'Iowan Old Style', ui-serif, Georgia, serif;
+  --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-data: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Surfaces — cool graph-paper tone rather than a cream/tan planner cliche */
+  --color-paper: #eef1f2;
+  --color-paper-raised: #f8f9f7;
+  --color-paper-sunken: #e3e7eb;
+  --color-line: #d3dade;
+  --color-line-strong: #b7c1c8;
+
+  /* Ink */
+  --color-ink: #1c2530;
+  --color-ink-soft: #566072;
+  --color-ink-faint: #8a94a3;
+
+  /* Brand / structural accent — deep fountain-pen navy */
+  --color-brand: #2f4468;
+  --color-brand-soft: #5c729a;
+  --color-brand-tint: #dde4ef;
+
+  /* Dark mode surfaces (used behind prefers-color-scheme / class toggle) */
+  --color-paper-dark: #171b22;
+  --color-paper-dark-raised: #1f2530;
+  --color-ink-dark: #e6e9ee;
+
+  /* Semantic status colors — one of four states, always paired: status + text */
+  --color-status-needs-self-study: #b23b3b;
+  --color-status-needs-self-study-tint: #f6e1df;
+  --color-status-needs-revision: #b9791f;
+  --color-status-needs-revision-tint: #f6ead4;
+  --color-status-test-yourself: #5c5599;
+  --color-status-test-yourself-tint: #e6e3f3;
+  --color-status-safe: #3c7a52;
+  --color-status-safe-tint: #dfeee2;
+
+  /* Deadline urgency */
+  --color-urgency-overdue: #9c2b2b;
+  --color-urgency-urgent: #b23b3b;
+  --color-urgency-soon: #b9791f;
+  --color-urgency-later: #566072;
+
+  --radius-card: 0.625rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: -1px -1px;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-tint);
+    color: var(--color-brand);
+  }
+
+  /* Touch-friendly focus ring, keyboard only */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
